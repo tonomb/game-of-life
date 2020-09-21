@@ -1,0 +1,24 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.grid{
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cel{
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgb(0, 44, 11);
+  background-color: black;
+}
