@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./App.css";
 import produce from "immer";  // double buffering state 
+import Cel from "./components/Cel";
 
 // NW | N | NE
 //  W | C |  E
@@ -16,8 +17,8 @@ const operations = [
   [-1, 1],
 ];
 
-const numRows = 100;
-const numCols = 100;
+const numRows = 74;
+const numCols = 74;
 
 // creates an empty grid 
 const emptyGrid = () => {
@@ -145,26 +146,27 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Conway's Game of Life</h1>
-      <div className="controls">
-        <button onClick={() => setRunning(!running)}>
-          {running ? "stop" : "start"}
-        </button>
-        <button onClick={nextSimulation} disabled={running} >Step</button>
-        <button onClick={setRandom} disabled={running}>Random</button>
-        <button onClick={()=>setGrid(emptyGrid)} disabled={running}>Clear</button>
+      <div className='rules'>
+        <h1>Conway's Game of Life</h1>
+        <div className="controls">
+          <button onClick={() => setRunning(!running)}>
+            {running ? "stop" : "start"}
+          </button>
+          <button onClick={nextSimulation} disabled={running}>
+            Step
+          </button>
+          <button onClick={setRandom} disabled={running}>
+            Random
+          </button>
+          <button onClick={() => setGrid(emptyGrid)} disabled={running}>
+            Clear
+          </button>
+        </div>
       </div>
       <div className="grid">
         {grid.map((rows, i) => {
           return rows.map((col, k) => {
-            return (
-              <div
-                key={`${i}-${k}`}
-                onClick={() => toggleLife(i, k)}
-                className="cel"
-                style={{ backgroundColor: grid[i][k] ? "white" : undefined }}
-              ></div>
-            );
+            return <Cel x={i} y={k} toggleLife={toggleLife} grid={grid} />;
           });
         })}
       </div>
