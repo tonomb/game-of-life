@@ -11,7 +11,8 @@
   align-items: center;
 }
 .grid{
-  width: 100vw;
+  width: 1000px;
+  /* width: 60px; */
   display: flex;
   flex-wrap: wrap;
 }
