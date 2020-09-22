@@ -18,6 +18,8 @@
   text-align: center;
   font-size: 40px;
   margin-top: 36px;
+  text-decoration: underline;
+  padding: 16px;
 }
 
 .controls{
@@ -42,6 +44,24 @@
 .controls button:disabled{
   opacity: .6;
   cursor: default;
+}
+
+.gallery-section{
+  margin-top: 36px;
+}
+
+.gallery{
+  display: inline-block;
+}
+
+.gallery-title{
+  text-align: center;
+  padding: 5px;
+}
+
+.gallery-img{
+  width: 150px;
+  scale: 3;
 }
 
 .grid{

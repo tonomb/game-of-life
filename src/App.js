@@ -3,6 +3,11 @@ import "./App.css";
 import produce from "immer";  // double buffering state 
 import Cel from "./components/Cel";
 
+//Patterns
+import gliderImg from './assets/glider-gun.png'
+import gliderGun from './data/gliderGun'
+
+
 // NW | N | NE
 //  W | C |  E
 // SW | S | SE
@@ -137,8 +142,13 @@ export default function App() {
       });
     });
 
-    setTimeout(runSimulation, 200);
+    setTimeout(runSimulation, 150);
   }, []);
+
+
+  const saveConfig = ()=>{
+    window.localStorage.setItem('pattern', grid)
+  }
 
   useEffect(() => {
     runSimulation();
@@ -161,12 +171,19 @@ export default function App() {
           <button onClick={() => setGrid(emptyGrid)} disabled={running}>
             Clear
           </button>
+          <button onClick={saveConfig}> Save</button>
+        </div>
+        <div className="gallery-section">
+          <div className='gallery'>
+          <p className="gallery-title">Gosper glider gun</p>
+          <img className='gallery-img' src={gliderImg} onClick={()=>setGrid(gliderGun)} alt='glider gun'/>
+          </div>
         </div>
       </div>
       <div className="grid">
         {grid.map((rows, i) => {
           return rows.map((col, k) => {
-            return <Cel x={i} y={k} toggleLife={toggleLife} grid={grid} />;
+            return <Cel key={`${i}-${k}`} x={i} y={k} toggleLife={toggleLife} grid={grid} />;
           });
         })}
       </div>
