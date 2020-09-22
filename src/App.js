@@ -6,7 +6,8 @@ import Cel from "./components/Cel";
 //Patterns
 import gliderImg from './assets/glider-gun.png'
 import gliderGun from './data/gliderGun'
-
+import simkinImg from './assets/simkin-gun.png'
+import simkinGun from './data/simkinGliderGun'
 
 // NW | N | NE
 //  W | C |  E
@@ -177,6 +178,10 @@ export default function App() {
           <div className='gallery'>
           <p className="gallery-title">Gosper glider gun</p>
           <img className='gallery-img' src={gliderImg} onClick={()=>setGrid(gliderGun)} alt='glider gun'/>
+          </div>
+          <div className='gallery'>
+          <p className="gallery-title">Simkin glider gun</p>
+          <img className='gallery-img' src={simkinImg} onClick={()=>setGrid(simkinGun)} alt='glider gun'/>
           </div>
         </div>
       </div>

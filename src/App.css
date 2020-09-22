@@ -48,6 +48,8 @@
 
 .gallery-section{
   margin-top: 36px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .gallery{
@@ -61,6 +63,7 @@
 
 .gallery-img{
   width: 150px;
+  height: 150px;
   scale: 3;
 }
 
