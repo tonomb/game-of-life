@@ -181,6 +181,14 @@ input[type="range"] {
   align-self: center;
 }
 
+@media only screen and (max-width: 1480px){
+  .grid{
+    position: fixed;
+  top: 15px;
+  left: 15px;
+  }
+}
+
 .cel{
   width: 10px;
   height: 10px;
