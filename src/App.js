@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import produce from "immer"; // double buffering state
 import Cel from "./components/Cel";
@@ -45,6 +45,7 @@ export default function App() {
   const [running, setRunning] = useState(false);
   const runningRef = useRef(); // useRef persists the object on every render.
   runningRef.current = running;
+  const [count, setCount] = useState(0)
 
   const toggleLife = (i, k) => {
     // only click if simulations is stoped
@@ -103,10 +104,11 @@ export default function App() {
         }
       });
     });
+    setCount(count + 1)
   };
 
-  const runSimulation = useCallback(() => {
-    // using callback to have the same function on every rerender
+  const runSimulation = () => {
+    
     // stops simulation when user clicked stop
     if (!runningRef.current) {
       return;
@@ -147,8 +149,8 @@ export default function App() {
       });
     });
 
-    setTimeout(runSimulation, 20);
-  }, []);
+    setInterval(runSimulation, 10);
+  };
 
   const saveConfig = () => {
     window.localStorage.setItem("pattern", grid);
@@ -158,10 +160,17 @@ export default function App() {
     runSimulation();
   }, [running]);
 
+  useEffect(()=>{
+    if(runningRef.current){
+      setCount(count + 1)
+    }
+  },[grid])
+
   return (
     <div className="App">
       <div className="rules">
         <h1>Conway's Game of Life</h1>
+        <h4 style={{visibility: count > 0 ? 'visible': 'hidden'}}>Gen {count}</h4>
         <div className="controls">
           <button onClick={() => setRunning(!running)}>
             {running ? "stop" : "start"}
@@ -172,7 +181,7 @@ export default function App() {
           <button onClick={setRandom} disabled={running}>
             Random
           </button>
-          <button onClick={() => setGrid(emptyGrid)} disabled={running}>
+          <button onClick={() => {setGrid(emptyGrid); setCount(0)}} disabled={running}>
             Clear
           </button>
           <button onClick={saveConfig}> Save</button>
