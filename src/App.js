@@ -46,6 +46,7 @@ export default function App() {
   const runningRef = useRef(); // useRef persists the object on every render.
   runningRef.current = running;
   const [count, setCount] = useState(0)
+  const [speed, setSpeed] = useState(100);
 
   const toggleLife = (i, k) => {
     // only click if simulations is stoped
@@ -149,7 +150,8 @@ export default function App() {
       });
     });
 
-    setInterval(runSimulation, 10);
+    setTimeout(runSimulation, speed);
+    // requestAnimationFrame(runSimulation);
   };
 
   const saveConfig = () => {
@@ -166,11 +168,16 @@ export default function App() {
     }
   },[grid])
 
+
+  const calculateSpeed = (e) =>{
+    setSpeed(e.target.value)
+  }
+
   return (
     <div className="App">
       <div className="rules">
         <h1>Conway's Game of Life</h1>
-        <h4 style={{visibility: count > 0 ? 'visible': 'hidden'}}>Gen {count}</h4>
+        <h4 style={{visibility: count > 0 ? 'visible': 'hidden'}}>Generation: {count}</h4>
         <div className="controls">
           <button onClick={() => setRunning(!running)}>
             {running ? "stop" : "start"}
@@ -184,14 +191,17 @@ export default function App() {
           <button onClick={() => {setGrid(emptyGrid); setCount(0)}} disabled={running}>
             Clear
           </button>
-          <button onClick={saveConfig}> Save</button>
+          {/* <button onClick={saveConfig}> Save</button> */}
+          <div className="speed">
+            <input onChange={calculateSpeed} type="range" name="speed" id="speed" min='100' max='1000' value={speed} step='50'/>
+          </div>
         </div>
         <div className="description">
           <p>
             The Game of Life is a cellular automaton devised by the British
             mathematician John Horton Conway in 1970. It is a zero-player game,
             meaning that its evolution is determined by its initial state,
-            requiring no further input. One interacts with the Game of Life by
+            requiring no further input. Interact with the Game of Life by
             creating an initial configuration and observing how it evolves.
           </p>
           <h4>Rules</h4>
