@@ -46,6 +46,24 @@
   cursor: default;
 }
 
+.description{
+  width: 85%;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  padding: 8px;
+  
+}
+.description h4{
+  margin-top: 36px;
+
+}
+
+.description ol{
+  line-height: 1.7;
+  list-style-position: inside;
+}
+
 .gallery-section{
   margin-top: 36px;
   display: flex;
@@ -59,6 +77,8 @@
 .gallery-title{
   text-align: center;
   padding: 5px;
+  font-weight: bold;
+  text-transform: capitalize;
 }
 
 .gallery-img{

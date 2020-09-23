@@ -8,6 +8,8 @@ import gliderImg from './assets/glider-gun.png'
 import gliderGun from './data/gliderGun'
 import simkinImg from './assets/simkin-gun.png'
 import simkinGun from './data/simkinGliderGun'
+import cloverImg from './assets/cloverleaf.png'
+import cloverleaf from './data/cloverleaf'
 
 // NW | N | NE
 //  W | C |  E
@@ -143,7 +145,7 @@ export default function App() {
       });
     });
 
-    setTimeout(runSimulation, 150);
+    setTimeout(runSimulation, 20);
   }, []);
 
 
@@ -174,14 +176,28 @@ export default function App() {
           </button>
           <button onClick={saveConfig}> Save</button>
         </div>
+        <div className="description">
+          <p>The Game of Life is a cellular automaton devised by the British mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves.</p>
+          <h4>Rules</h4>
+          <ol>
+            <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation.</li>
+            <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+            <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+            <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+          </ol>
+        </div>
         <div className="gallery-section">
           <div className='gallery'>
-          <p className="gallery-title">Gosper glider gun</p>
-          <img className='gallery-img' src={gliderImg} onClick={()=>setGrid(gliderGun)} alt='glider gun'/>
+            <p className="gallery-title">Gosper glider gun</p>
+            <img className='gallery-img' src={gliderImg} onClick={()=>setGrid(gliderGun)} alt='glider gun'/>
           </div>
           <div className='gallery'>
-          <p className="gallery-title">Simkin glider gun</p>
-          <img className='gallery-img' src={simkinImg} onClick={()=>setGrid(simkinGun)} alt='glider gun'/>
+            <p className="gallery-title">Simkin glider gun</p>
+            <img className='gallery-img' src={simkinImg} onClick={()=>setGrid(simkinGun)} alt='glider gun'/>
+          </div>
+          <div className='gallery'>
+            <p className="gallery-title">Cloverleaf</p>
+            <img className='gallery-img' src={cloverImg} onClick={()=>setGrid(cloverleaf)} alt='glider gun'/>
           </div>
         </div>
       </div>
