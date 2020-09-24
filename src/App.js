@@ -12,6 +12,10 @@ import hammerImg from "./assets/hammerhead.png";
 import hammerhead from "./data/hammerhead";
 import pufferImg from "./assets/bi-block-puffer.png";
 import puffer from "./data/puffer";
+import pentaImg from './assets/rpentamino.png'
+import rPentamino from './data/rPentomino';
+import centianlImg from './assets/centinal.png'
+import centinal from './data/centinal'
 
 // NW | N | NE
 //  W | C |  E
@@ -176,24 +180,26 @@ export default function App() {
   return (
     <div className="App">
       <div className="rules">
-        <h1>Conway's Game of Life</h1>
-        <h4 style={{visibility: count > 0 ? 'visible': 'hidden'}}>Generation: {count}</h4>
-        <div className="controls">
-          <button onClick={() => setRunning(!running)}>
-            {running ? "stop" : "start"}
-          </button>
-          <button onClick={nextSimulation} disabled={running}>
-            Step
-          </button>
-          <button onClick={setRandom} disabled={running}>
-            Random
-          </button>
-          <button onClick={() => {setGrid(emptyGrid); setCount(0)}} disabled={running}>
-            Clear
-          </button>
-          {/* <button onClick={saveConfig}> Save</button> */}
-          <div className="speed">
-            <input onChange={calculateSpeed} type="range" name="speed" id="speed" min='100' max='1000' value={speed} step='50'/>
+        <div className="rules-header">
+          <h1>Conway's Game of Life</h1>
+          <h4 style={{visibility: count > 0 ? 'visible': 'hidden'}}>Generation: {count}</h4>
+          <div className="controls">
+            <button onClick={() => setRunning(!running)}>
+              {running ? "stop" : "start"}
+            </button>
+            <button onClick={nextSimulation} disabled={running}>
+              Step
+            </button>
+            <button onClick={setRandom} disabled={running}>
+              Random
+            </button>
+            <button onClick={() => {setGrid(emptyGrid); setCount(0)}} disabled={running}>
+              Clear
+            </button>
+            {/* <button onClick={saveConfig}> Save</button> */}
+            <div className="speed">
+              <input onChange={calculateSpeed} type="range" name="speed" id="speed" min='100' max='1000' value={speed} step='50'disabled={running} />
+            </div>
           </div>
         </div>
         <div className="description">
@@ -244,21 +250,39 @@ export default function App() {
             />
           </div>
           <div className="gallery">
-            <p className="gallery-title">Hammerhead</p>
-            <img
-              className="gallery-img"
-              src={hammerImg}
-              onClick={() => setGrid(hammerhead)}
-              alt="Hammerhead"
-            />
-          </div>
-          <div className="gallery">
             <p className="gallery-title">Bi block puffer</p>
             <img
               className="gallery-img"
               src={pufferImg}
               onClick={() => setGrid(puffer)}
               alt="Bi Block Puffer"
+            />
+          </div>
+          <div className="gallery">
+            <p className="gallery-title">R-Pentomino</p>
+            <img
+              className="gallery-img"
+              src={pentaImg}
+              onClick={() => setGrid(rPentamino)}
+              alt="R-Pentomino"
+            />
+          </div>
+          <div className="gallery">
+            <p className="gallery-title">Centinal</p>
+            <img
+              className="gallery-img"
+              src={centianlImg}
+              onClick={() => setGrid(centinal)}
+              alt="Centinal"
+            />
+          </div>
+          <div className="gallery">
+            <p className="gallery-title">Hammerhead</p>
+            <img
+              className="gallery-img"
+              src={hammerImg}
+              onClick={() => setGrid(hammerhead)}
+              alt="Hammerhead"
             />
           </div>
         </div>
